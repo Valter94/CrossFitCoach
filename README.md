@@ -1,0 +1,1 @@
+Full CrossFitCoach project scaffold. Replace placeholders (icons, any native libs) if needed. CI workflow installs Android SDK and builds debug APK.
