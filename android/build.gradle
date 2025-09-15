@@ -1,16 +1,12 @@
 buildscript {
-    ext {
-        // Если нужно, добавьте переменные, но теперь они не обязательны, так как указаны в app/build.gradle
-        buildToolsVersion = "34.0.0"
-    }
     repositories {
         google()
         mavenCentral()
     }
     dependencies {
-        classpath("com.android.tools.build:gradle:8.5.2") // AGP для Gradle 9.0
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.24") // Kotlin плагин
-        // НЕ добавляйте com.facebook.react:react-native-gradle-plugin здесь!
+        classpath 'com.android.tools.build:gradle:8.5.2'
+        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.24'
+        // НЕ добавляйте react-native-gradle-plugin здесь
     }
 }
 
@@ -18,9 +14,8 @@ allprojects {
     repositories {
         google()
         mavenCentral()
-        maven { url 'https://www.jitpack.io' } // Если нужны JitPack-зависимости
+        maven { url 'https://www.jitpack.io' } // Опционально
         maven {
-            // Локальный репозиторий React Native
             url "$rootDir/../node_modules/react-native/android"
         }
     }
