@@ -1,16 +1,29 @@
-buildscript {
-    repositories {
-        google()
-        mavenCentral()
+plugins {
+    id "com.android.application"
+}
+
+android {
+    namespace "com.crossfitcoach"
+    compileSdk 33
+
+    defaultConfig {
+        applicationId "com.crossfitcoach"
+        minSdk 21
+        targetSdk 33
+        versionCode 1
+        versionName "1.0"
     }
-    dependencies {
-        classpath("com.android.tools.build:gradle:7.4.2")
+
+    buildTypes {
+        debug { }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
+        }
     }
 }
 
-allprojects {
-    repositories {
-        google()
-        mavenCentral()
-    }
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation("com.facebook.react:react-android:0.72.4")
 }
