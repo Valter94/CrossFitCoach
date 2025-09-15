@@ -12,18 +12,12 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
-        maven { url 'https://www.jitpack.io' } // Опционально, если используются библиотеки с JitPack
+        maven { url 'https://www.jitpack.io' } // Опционально для сторонних библиотек
         maven {
-            // Локальный репозиторий React Native
             url "$rootDir/../node_modules/react-native/android"
         }
     }
 }
-
-rootProject.name = 'CrossFitCoach'
-
-include ':app'
-includeBuild('../node_modules/@react-native/codegen') // Для кодогенерации, если используется
 
 plugins {
     id("com.facebook.react.settings")
@@ -32,3 +26,7 @@ plugins {
 extensions.configure(com.facebook.react.ReactSettingsExtension::class) {
     autolinkLibrariesWithApp()
 }
+
+rootProject.name = 'CrossFitCoach'
+include ':app'
+includeBuild('../node_modules/@react-native/codegen') // Опционально, если используется кодогенерация
