@@ -1,6 +1,7 @@
 plugins {
-    id "com.android.application"
-    id "org.jetbrains.kotlin.android"
+    id("com.android.application")
+    id("org.jetbrains.kotlin.android")
+    id("com.facebook.react") // Автоматическое применение через settings.gradle
 }
 
 android {
@@ -9,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId "com.crossfitcoach"
-        minSdk 23 // Обновлено до 23 для совместимости с react-android
+        minSdk 23 // Как указано ранее, для совместимости с 0.74.5
         targetSdk 34
         versionCode 1
         versionName "1.0"
@@ -21,7 +22,7 @@ android {
             proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
         }
         debug {
-            // Конфигурации для debug-сборки, если нужны
+            // Конфигурации для debug-сборки
         }
     }
 
@@ -40,7 +41,10 @@ android {
 }
 
 dependencies {
-    implementation "com.facebook.react:react-android:0.74.5" // Фиксированная версия
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:1.9.24"
-    implementation "androidx.core:core-ktx:1.12.0"
+    implementation("com.facebook.react:react-android") // Без версии — плагин сам подтянет 0.74.5 из локального Maven
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.9.24")
+    implementation("androidx.core:core-ktx:1.12.0")
+    // Другие зависимости, если есть
 }
+
+apply from: file("../../node_modules/@react-native/gradle-plugin/facebook/react-native-screens.preset") // Если используется react-native-screens или подобные
