@@ -1,3 +1,33 @@
-rootProject.name = "CrossFitCoach"
+pluginManagement {
+    includeBuild('../node_modules/@react-native/gradle-plugin')
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
 
-include(":app")
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+        maven { url 'https://www.jitpack.io' } // Если нужны JitPack-репозитории
+        maven {
+            // Локальный репозиторий React Native (для react-android и других)
+            url "$rootDir/../node_modules/react-native/android"
+        }
+    }
+}
+
+plugins {
+    id("com.facebook.react.settings")
+}
+
+extensions.configure(com.facebook.react.ReactSettingsExtension::class) {
+    autolinkLibrariesWithApp()
+}
+
+rootProject.name = 'CrossFitCoach'
+include ':app'
+includeBuild('../node_modules/@react-native/codegen') // Если используется кодгенерация
