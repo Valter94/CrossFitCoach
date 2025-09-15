@@ -3,11 +3,9 @@ buildscript {
         google()
         mavenCentral()
     }
-dependencies {
-    implementation fileTree(dir: "libs", include: ["*.jar"])
-    implementation("com.facebook.react:react-android:0.72.4")
-}
-
+    dependencies {
+        classpath("com.android.tools.build:gradle:7.4.2")
+    }
 }
 
 allprojects {
