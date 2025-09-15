@@ -27,6 +27,9 @@ jobs:
           distribution: temurin
           java-version: 17
 
+      - name: Make gradlew executable
+        run: cd android && chmod +x gradlew
+
       - name: Build Debug APK
         run: cd android && ./gradlew assembleDebug -Dorg.gradle.jvmargs="-Xmx2048m"
 
