@@ -1,5 +1,8 @@
-apply plugin: "com.android.application"
-apply plugin: "kotlin-android"
+```gradle
+plugins {
+    id "com.android.application"
+    id "org.jetbrains.kotlin.android"
+}
 
 android {
     namespace "com.crossfitcoach"
@@ -15,9 +18,24 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true // Enable minification for release builds
             proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
         }
+        debug {
+            // Add debug build type configurations if needed
+        }
+    }
+    // Enable view binding to avoid findViewById
+    buildFeatures {
+        viewBinding true
+    }
+    // Configure compile options for Java compatibility
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
     }
 }
 
@@ -25,33 +43,15 @@ dependencies {
     implementation "com.facebook.react:react-android:+"
     implementation "org.jetbrains.kotlin:kotlin-stdlib:1.9.0"
     implementation "androidx.core:core-ktx:1.12.0"
+
+    //Consider adding lifecycle dependencies for managing UI data
+    //implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2"
+    //implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.6.2"
+
+    //Consider adding coroutines for asynchronous operations
+    //implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1"
+
+    //Consider adding material design components
+    //implementation "com.google.android.material:material:1.11.0"
 }
-apply plugin: "com.android.application"
-apply plugin: "kotlin-android"
-
-android {
-    namespace "com.crossfitcoach"
-    compileSdkVersion rootProject.ext.compileSdkVersion
-
-    defaultConfig {
-        applicationId "com.crossfitcoach"
-        minSdkVersion rootProject.ext.minSdkVersion
-        targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 1
-        versionName "1.0"
-    }
-
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
-        }
-    }
-}
-
-dependencies {
-    implementation "com.facebook.react:react-android:+"
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:1.9.0"
-    implementation "androidx.core:core-ktx:1.12.0"
-}
- 
+```
