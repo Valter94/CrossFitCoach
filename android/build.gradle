@@ -1,16 +1,12 @@
 buildscript {
-    ext {
-        compileSdkVersion = 34
-        targetSdkVersion = 34
-        minSdkVersion = 21
-    }
     repositories {
         google()
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:8.5.2' // Обновите до последней совместимой версии
-        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.24' // Обновите плагин Kotlin
+        classpath 'com.android.tools.build:gradle:8.5.2' // Последняя версия AGP
+        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.24' // Обновленный плагин Kotlin
+        classpath 'com.facebook.react:react-native-gradle-plugin:0.74.5' // Плагин для React Native
     }
 }
 
