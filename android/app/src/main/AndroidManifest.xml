@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <uses-sdk
-        android:minSdkVersion="23" <!-- Обновлено до 23 -->
+        android:minSdkVersion="23"
         android:targetSdkVersion="34" />
     <application
         android:allowBackup="true"
@@ -9,6 +9,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <!-- Другие элементы, если они есть -->
+        <!-- Другие элементы, если есть -->
     </application>
 </manifest>
