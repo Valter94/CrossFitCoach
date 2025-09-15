@@ -1,3 +1,4 @@
+Clean Gradle cache
 name: Build Android APK
 
 on:
