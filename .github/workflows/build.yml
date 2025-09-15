@@ -37,7 +37,7 @@ jobs:
         run: cd android && ./gradlew cleanBuildCache
 
       - name: Build Debug APK
-        run: cd android && ./gradlew assembleDebug -Dorg.gradle.jvmargs="-Xmx2048m"
+        run: cd android && ./gradlew assembleDebug -Dorg.gradle.jvmargs="-Xmx2048m" --stacktrace --info
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
