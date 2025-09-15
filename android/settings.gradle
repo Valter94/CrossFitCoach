@@ -18,6 +18,7 @@ dependencyResolutionManagement {
         }
     }
 }
+
 plugins {
     id("com.facebook.react.settings")
 }
