@@ -1,14 +1,16 @@
-Clean Gradle cache
 name: Build Android APK
 
 on:
   push:
     branches:
       - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
 
     steps:
       - name: Checkout code
@@ -17,7 +19,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: '18'
 
       - name: Install dependencies
         run: npm install
@@ -25,11 +27,14 @@ jobs:
       - name: Set up JDK
         uses: actions/setup-java@v4
         with:
-          distribution: temurin
-          java-version: 17
+          distribution: 'temurin'
+          java-version: '17'
 
       - name: Make gradlew executable
         run: cd android && chmod +x gradlew
+
+      - name: Clean Gradle cache
+        run: cd android && ./gradlew cleanBuildCache
 
       - name: Build Debug APK
         run: cd android && ./gradlew assembleDebug -Dorg.gradle.jvmargs="-Xmx2048m"
@@ -39,4 +44,3 @@ jobs:
         with:
           name: app-debug
           path: android/app/build/outputs/apk/debug/app-debug.apk
- 
