@@ -1,29 +1,26 @@
-plugins {
-    id "com.android.application"
-}
+apply plugin: "com.android.application"
+apply plugin: "kotlin-android"
 
 android {
     namespace "com.crossfitcoach"
-    compileSdk 33
+    compileSdkVersion rootProject.ext.compileSdkVersion
 
     defaultConfig {
         applicationId "com.crossfitcoach"
-        minSdk 21
-        targetSdk 33
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
     }
 
     buildTypes {
-        debug { }
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
         }
     }
 }
 
 dependencies {
-    implementation fileTree(dir: "libs", include: ["*.jar"])
-    implementation("com.facebook.react:react-android:0.72.4")
+    implementation "com.facebook.react:react-android:+"
+    implementation "androidx.core:core-ktx:1.12.0"
 }
