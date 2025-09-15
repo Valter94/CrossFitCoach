@@ -3,12 +3,12 @@ apply plugin: "kotlin-android"
 
 android {
     namespace "com.crossfitcoach"
-    compileSdkVersion 34
+    compileSdkVersion rootProject.ext.compileSdkVersion
 
     defaultConfig {
         applicationId "com.crossfitcoach"
-        minSdkVersion 23
-        targetSdkVersion 34
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
     }
