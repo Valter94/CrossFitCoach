@@ -1,7 +1,11 @@
-apply plugin: "com.android.application"
+plugins {
+    id "com.android.application"
+}
 
 android {
+    namespace "com.crossfitcoach"
     compileSdkVersion 33
+
     defaultConfig {
         applicationId "com.crossfitcoach"
         minSdkVersion 21
@@ -9,9 +13,13 @@ android {
         versionCode 1
         versionName "1.0"
     }
+
     buildTypes {
-        debug {}
-        release { minifyEnabled false }
+        debug { }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
+        }
     }
 }
 
