@@ -1,56 +1,19 @@
-name: Build Android APK
-
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
-
+name: Android CI
+on: [push]
 jobs:
   build:
-    runs-on: ubuntu-24.04
-
+    runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18'
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Set up JDK
-        uses: actions/setup-java@v4
-        with:
-          distribution: 'temurin'
-          java-version: '17'
-
       - name: Set up Android SDK
         uses: android-actions/setup-android@v3
         with:
-          cmdline-tools-version: '12.0'
-          accept-sdk-licenses: true
+          accept-android-sdk-licenses: true
           packages: |
             platforms;android-34
             build-tools;34.0.0
             platform-tools
-
-      - name: Make gradlew executable
-        run: cd android && chmod +x gradlew
-
-      - name: Clean Gradle cache
-        run: cd android && ./gradlew cleanBuildCache --stacktrace --info
-
-      - name: Build Debug APK
-        run: cd android && ./gradlew assembleDebug -Dorg.gradle.jvmargs="-Xmx2048m" --stacktrace --info --warning-mode all
-
-      - name: Upload APK
-        uses: actions/upload-artifact@v4
-        with:
-          name: app-debug
-          path: android/app/build/outputs/apk/debug/app-debug.apk
+      - name: List SDK packages
+        run: /usr/local/lib/android/sdk/cmdline-tools/latest/bin/sdkmanager --list
+      - name: Install SDK packages
+        run: |
+          /usr/local/lib/android/sdk/cmdline-tools/latest/bin/sdkmanager "platforms;android-34" "build-tools;34.0.0" "platform-tools"
