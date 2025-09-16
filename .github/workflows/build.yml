@@ -30,14 +30,24 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+        with:
+          cmdline-tools-version: '12.0'
+          accept-sdk-licenses: true
+          packages: |
+            platforms;android-34
+            build-tools;34.0.0
+            platform-tools
+
       - name: Make gradlew executable
         run: cd android && chmod +x gradlew
 
       - name: Clean Gradle cache
-        run: cd android && ./gradlew cleanBuildCache
+        run: cd android && ./gradlew cleanBuildCache --stacktrace --info
 
       - name: Build Debug APK
-        run: cd android && ./gradlew assembleDebug -Dorg.gradle.jvmargs="-Xmx2048m" --stacktrace --info
+        run: cd android && ./gradlew assembleDebug -Dorg.gradle.jvmargs="-Xmx2048m" --stacktrace --info --warning-mode all
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
